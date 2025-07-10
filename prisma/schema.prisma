@@ -6,3 +6,11 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
+model temporalUrls {
+  id        Int      @id @default(autoincrement())
+  longUrl   String
+  codeUrl   String   @unique
+  createdAt DateTime @default(now())
+  expiresAt DateTime @default(dbgenerated("CURRENT_TIMESTAMP + INTERVAL 1 DAY")) @db.Timestamp(0)
+}
