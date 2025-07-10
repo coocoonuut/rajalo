@@ -1,0 +1,18 @@
+# Simulate a MySQL server as a real database
+services:
+  database:
+    image: mysql:8
+    container_name: server-simulation
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - persistence:/var/lib/mysql
+
+volumes:
+  persistence:
