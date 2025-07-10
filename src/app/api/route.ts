@@ -21,6 +21,7 @@ export async function POST(request: Request) {
       data: {
         longUrl,
         codeUrl: nanoid(6),
+        expiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000),
       },
     });
 
