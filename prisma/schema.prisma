@@ -14,3 +14,13 @@ model temporalUrls {
   createdAt DateTime @default(now())
   expiresAt DateTime @db.Timestamp(0)
 }
+
+model User {
+  id        Int       @id @default(autoincrement())
+  email     String    @unique
+  password  String
+  username  String    @unique
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime? @db.Timestamp(0)
+}
