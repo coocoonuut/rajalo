@@ -4,8 +4,6 @@ services:
     image: mysql:8
     container_name: server-simulation
     restart: always
-    ports:
-      - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
       MYSQL_DATABASE: ${DB_NAME}
@@ -14,5 +12,18 @@ services:
     volumes:
       - persistence:/var/lib/mysql
 
+  app:
+    build: .
+    container_name: nextjs-app
+    restart: always
+    environment:
+      DATABASE_URL: mysql://${DB_USER}:${DB_PASSWORD}@database:3306/${DB_NAME}
+    depends_on:
+      - database
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./:/app
+    
 volumes:
   persistence:
