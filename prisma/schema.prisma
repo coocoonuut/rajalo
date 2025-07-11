@@ -15,7 +15,7 @@ model temporalUrls {
   expiresAt DateTime @db.Timestamp(0)
 }
 
-model User {
+model user {
   id        Int       @id @default(autoincrement())
   email     String    @unique
   password  String
