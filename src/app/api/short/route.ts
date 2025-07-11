@@ -1,3 +1,4 @@
+import jsonResponse from "@/lib/jsonResponse";
 import { prisma } from "@/lib/prisma";
 import { nanoid } from "nanoid";
 import { NextResponse } from "next/server";
@@ -8,10 +9,7 @@ export async function POST(request: Request) {
 
     // Validate input
     if (!longUrl || typeof longUrl !== "string") {
-      return NextResponse.json(
-        { error: "longUrl is required" },
-        { status: 400 }
-      );
+      return jsonResponse({ error: "longUrl must be a valid string" }, 400);
     }
 
     // Create a new temporal URL entry
