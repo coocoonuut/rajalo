@@ -1,7 +1,7 @@
 FROM node:20-alpine
 
 # Install necessary dependencies to the OS for a secure database connection (TLS/SSL)
-RUN apk add --no-cache openssl
+RUN apk add --no-cache openssl netcat-openbsd
 
 WORKDIR /app
 
